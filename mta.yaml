@@ -1,0 +1,131 @@
+_schema-version: 3.3.0
+ID: com-sovanta-gtm-event-tracker
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+
+modules:
+  # --------------------- APPROUTER MODULE ---------------------
+  - name: com-sovanta-gtm-event-tracker-approuter
+    type: approuter.nodejs
+    path: app/router
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+      keep-existing-routes: true
+    build-parameters:
+      requires:
+        - name: com-sovanta-gtm-event-tracker-ui
+          artifacts:
+            - './*'
+          target-path: resources/com-sovanta-gtm-event-tracker-ui/webapp
+    requires:
+      - name: com-sovanta-gtm-event-tracker-auth
+      - name: com-sovanta-gtm-event-tracker-destination
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api
+          url: ~{srv-url}
+          forwardAuthToken: true
+    provides:
+      - name: app-api
+        properties:
+          app-protocol: ${protocol}
+          app-uri: ${default-uri}
+  # --------------------- DB DEPLOYER MODULE ---------------------
+  - name: com-sovanta-gtm-event-tracker-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+      disk-quota: 1GB
+      memory: 256MB
+    build-parameters:
+      ignore:
+        - "node_modules/"
+    requires:
+      - name: com-sovanta-gtm-event-tracker-db
+
+  # --------------------- SERVER MODULE ---------------------
+  - name: com-sovanta-gtm-event-tracker-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+      disk-quota: 2GB
+      memory: 1GB
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: com-sovanta-gtm-event-tracker-auth
+      - name: com-sovanta-gtm-event-tracker-destination
+      - name: com-sovanta-gtm-event-tracker-db
+
+  # --------------------- UI PROJECT MODULE ---------------------
+  - name: com-sovanta-gtm-event-tracker-ui
+    type: html5
+    path: app/com-sovanta-gtm-event-tracker-ui
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+
+resources:
+  # --------------------- HANA DB SERVICE ---------------------
+  - name: com-sovanta-gtm-event-tracker-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+
+  # --------------------- UAA / XSUAA SERVICE ---------------------
+  - name: com-sovanta-gtm-event-tracker-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: com-sovanta-gtm-event-tracker
+        tenant-mode: dedicated
+
+  # --------------------- DESTINATION SERVICE ---------------------
+  - name: com-sovanta-gtm-event-tracker-destination
+    type: org.cloudfoundry.managed-service
+    requires:
+      - name: srv-api
+    parameters:
+      service: destination
+      service-plan: lite
+      config:
+        version: "1.0.0"
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            existing_destinations_policy: update
+            destinations:
+              - Name: srv-api
+                URL: ~{srv-api/srv-url}
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+                HTML5.ForwardAuthToken: true
+                HTML5.DynamicDestination: true
+                HTML5.Timeout: 180000

@@ -1,0 +1,8 @@
+ID;event_ID;serviceName;description;pricePerPerson;serviceType;currency_code
+550e8400-e29b-41d4-a716-446655440040;550e8400-e29b-41d4-a716-446655440001;Welcome Breakfast;Continental breakfast buffet;18.50;Breakfast;EUR
+550e8400-e29b-41d4-a716-446655440041;550e8400-e29b-41d4-a716-446655440001;Business Lunch;Three-course business lunch;32.00;Lunch;EUR
+550e8400-e29b-41d4-a716-446655440042;550e8400-e29b-41d4-a716-446655440001;Afternoon Snacks;Finger food and pastries;12.50;Snacks;EUR
+550e8400-e29b-41d4-a716-446655440043;550e8400-e29b-41d4-a716-446655440002;Workshop Lunch;Healthy lunch buffet;28.00;Lunch;EUR
+550e8400-e29b-41d4-a716-446655440044;550e8400-e29b-41d4-a716-446655440002;Coffee Breaks;Morning and afternoon refreshments;8.50;Snacks;EUR
+550e8400-e29b-41d4-a716-446655440045;550e8400-e29b-41d4-a716-446655440004;Trade Show Lunch;Quick lunch packages;22.00;Lunch;EUR
+550e8400-e29b-41d4-a716-446655440046;550e8400-e29b-41d4-a716-446655440005;Executive Dinner;Premium five-course dinner;85.00;Dinner;EUR

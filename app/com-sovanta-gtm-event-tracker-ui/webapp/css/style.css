@@ -1,0 +1,108 @@
+/* ========================================
+   sovanta Branding
+   ======================================== */
+
+/* sovanta Color Palette */
+:root {
+    --sovanta-green: #3aaa35;
+    --sovanta-green-dark: #2D9184;
+    --sovanta-dark-contrast: #354a4c;
+    --sovanta-gold: #CBBB65;
+    --sovanta-rose: #f1c7cd;
+    --sovanta-teal: #2D9184;
+    
+    /* Gradient Combinations */
+    --gradient-vibrant: linear-gradient(135deg, #3aaa35 0%, #2D9184 50%, #CBBB65 100%);
+    --gradient-soft: linear-gradient(120deg, #f1c7cd 0%, #CBBB65 100%);
+    --gradient-cool: linear-gradient(135deg, #2D9184 0%, #3aaa35 100%);
+    --gradient-warm: linear-gradient(135deg, #CBBB65 0%, #3aaa35 100%);
+    --gradient-sunset: linear-gradient(135deg, #f1c7cd 0%, #CBBB65 50%, #3aaa35 100%);
+}
+
+header {
+    background-color: var(--sovanta-green) !important;
+}
+
+/* ========================================
+   Shell Logo Customization
+   ======================================== */
+
+/* Hide SAP logo */
+.sapUshellShellHeadLogo {
+    display: none !important;
+}
+
+/* Add sovanta logo */
+.sapUshellShellHead::before {
+    content: '';
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    background-image: url('../images/sovanta-logo.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin-right: 16px;
+    margin-left: 12px;
+}
+
+.sapUshellAppTitleText {
+    color: white !important;
+}
+
+.sapMTitle.sapMBarChild {
+    font-family: 72 !important;
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: normal !important;
+}
+
+th .sapMColumnHeader {
+    padding-left: 16px !important;
+    align-items: center !important;
+}
+
+td.sapMListTblCell {
+    padding: 16px !important;
+    font-family: 72;
+    font-size: var(--fontSize-16, 16px);
+    font-style: normal;
+    line-height: 22px;
+}
+
+.sapMListHdrTBar .sapMBtnBase.sapMBarChild {
+    border-radius: 8px;
+    border: 1px solid var(--Button-Standard-sapButton_BorderColor, #BCC3CA);
+    background: var(--Button-Standard-sapButton_Background, #FFF);
+}
+
+.sapMListHdrTBar .sapMBtnBase.sapMBarChild .sapMBtnHoverable,
+.sapMListHdrTBar .sapMBtnBase.sapMBarChild .sapMBtnActive {
+    background: none !important;
+    border: none !important;
+}
+
+.sapMListHdrTBar .sapMBtnBase.sapMBarChild:not(.sapMBtnDisabled):hover {
+    background: #f5f6f7;
+}
+
+.sapMListHdrTBar .sapMBtnBase.sapMBarChild.sapMBtnDisabled {
+    opacity: 0.5;
+}
+
+.sapUxAPBlockContainer {
+    box-shadow: 0 0 2px 0 rgba(85, 107, 130, 0.16), 0 2px 4px 0 rgba(85, 107, 130, 0.16);
+}
+
+#shell-header-logo {
+    display: none !important;
+}
+
+.sapMTitle {
+    font-family: 72;
+    font-size: var(--fontSize-32, 32px);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 38px; /* 118.75% */
+}

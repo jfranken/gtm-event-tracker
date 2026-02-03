@@ -1,0 +1,53 @@
+{
+  "name": "com-sovanta-gtm-event-tracker",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "dependencies": {
+    "@cap-js/hana": "^2.5.1",
+    "@cap-js/sqlite": "^2",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4.12.1",
+    "cors": "^2.8.5",
+    "express": "^4",
+    "passport": "^0.7.0"
+  },
+  "devDependencies": {
+    "@sap/cds-dk": "^9",
+    "cds-plugin-ui5": "^0.13.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "mbt:build": "mbt build --mtar com-sovanta-gtm-event-tracker.mtar",
+    "cf:deploy": "cf deploy mta_archives/com-sovanta-gtm-event-tracker.mtar",
+    "watch-project": "cds watch --open com-sovanta-gtm-event-tracker-ui/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-com-sovanta-gtm-event-tracker-ui": "cds watch --open comsovantagtmeventtrackerui/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "auth": {
+        "[development]": "dummy",
+        "[production]": "xsuaa"
+      },
+      "db": {
+        "[development]": {
+          "kind": "sqlite",
+          "credentials": {
+            "url": "db.sqlite"
+          }
+        },
+        "[production]": {
+          "kind": "hana"
+        }
+      },
+      "destinations": true
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/project",
+    "app/com-sovanta-gtm-event-tracker-ui"
+  ]
+}

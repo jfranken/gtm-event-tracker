@@ -1,0 +1,6 @@
+ID;event_ID;serviceName;description;pricePerPerson;beverageType;currency_code
+550e8400-e29b-41d4-a716-446655440050;550e8400-e29b-41d4-a716-446655440001;All-Day Beverages;Water, soft drinks, coffee, tea;9.50;Mixed Package;EUR
+550e8400-e29b-41d4-a716-446655440051;550e8400-e29b-41d4-a716-446655440001;Welcome Reception;Wine and beer selection;15.00;Alcoholic;EUR
+550e8400-e29b-41d4-a716-446655440052;550e8400-e29b-41d4-a716-446655440002;Workshop Beverages;Water and coffee service;6.00;Coffee & Tea;EUR
+550e8400-e29b-41d4-a716-446655440053;550e8400-e29b-41d4-a716-446655440004;Refreshment Package;Soft drinks and water;5.50;Soft Drinks;EUR
+550e8400-e29b-41d4-a716-446655440054;550e8400-e29b-41d4-a716-446655440005;Premium Bar;Premium spirits and wine;28.00;Alcoholic;EUR

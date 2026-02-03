@@ -1,0 +1,7 @@
+ID;firstName;lastName;email;role
+550e8400-e29b-41d4-a716-446655440010;Sarah;Mueller;sarah.mueller@company.com;Event Manager
+550e8400-e29b-41d4-a716-446655440011;Thomas;Schmidt;thomas.schmidt@company.com;Marketing Director
+550e8400-e29b-41d4-a716-446655440012;Anna;Weber;anna.weber@company.com;Event Coordinator
+550e8400-e29b-41d4-a716-446655440013;Michael;Fischer;michael.fischer@company.com;Partner Manager
+550e8400-e29b-41d4-a716-446655440014;Julia;Wagner;julia.wagner@company.com;Customer Success Lead
+550e8400-e29b-41d4-a716-446655440015;David;Becker;david.becker@company.com;Executive Relations

@@ -1,0 +1,6 @@
+ID;eventName;eventDate;location;status;expectedGuests;description
+550e8400-e29b-41d4-a716-446655440001;Product Launch Summit 2026;2026-03-15;Berlin Conference Center;Planning;150;Major product launch event with keynotes and demos
+550e8400-e29b-41d4-a716-446655440002;Customer Success Workshop;2026-04-10;Munich Training Center;Confirmed;80;Interactive workshop for key customers
+550e8400-e29b-41d4-a716-446655440003;Partner Enablement Day;2026-05-20;Frankfurt Office;Planning;60;Training session for channel partners
+550e8400-e29b-41d4-a716-446655440004;Industry Trade Show;2026-06-08;Hamburg Exhibition Hall;Confirmed;200;Annual industry trade show participation
+550e8400-e29b-41d4-a716-446655440005;Executive Roundtable;2026-07-12;Cologne Executive Lounge;Completed;25;Exclusive roundtable for C-level executives

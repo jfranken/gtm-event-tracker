@@ -1,0 +1,26 @@
+{
+  "welcomeFile": "/com-sovanta-gtm-event-tracker-ui/index.html",
+  "authenticationMethod": "route",
+  "routes": [
+    {
+      "source": "^/com-sovanta-gtm-event-tracker-ui/(.*)$",
+      "target": "$1",
+      "localDir": "resources/com-sovanta-gtm-event-tracker-ui/webapp",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/odata/(.*)$",
+      "target": "/odata/$1",
+      "destination": "srv-api",
+      "authenticationType": "xsuaa",
+      "csrfProtection": true
+    },
+    {
+      "source": "^/(.*)$",
+      "target": "$1",
+      "destination": "srv-api",
+      "authenticationType": "xsuaa",
+      "csrfProtection": true
+    }
+  ]
+}
