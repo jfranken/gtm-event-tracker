@@ -8,30 +8,23 @@ The GTM Event Tracker is designed to streamline event management by integrating 
 
 ### Key Features
 
-- **Event Master Data Management**: Create and maintain events with essential details including dates, locations, status, and guest counts
-- **Responsibility Assignment**: Assign one or more responsible persons to events with clear accountability and ownership
-- **Task Management**: Track tasks with lifecycle status (Open, In Progress, Done) to monitor progress and identify bottlenecks
-- **Cost Management**: Automatically calculate catering and beverage costs based on per-person pricing and guest counts
-- **Real-time Cost Transparency**: Total event costs are calculated automatically and updated when prices or guest numbers change
-- **Comprehensive Reporting**: Filter events by status or responsible person, view task progress, and access cost summaries
+- **Event Master Data Management**: Create and maintain events with essential details including name, date, location, status, expected guests, and description
+- **Draft Support**: Comfortable data entry with auto-save functionality
+- **Value Help**: Dropdown selection for status field with predefined values (Planning, Confirmed, Completed, Cancelled)
+- **Data Validation**: Business logic ensures data quality with automatic validation of event name, date, and guest counts
 
 ## Data Model
 
-### Core Entities
+### Core Entity
 
-- **Events**: Central entity containing event details (name, date, location, status, expected guests)
-- **Persons**: Team members who can be assigned responsibilities
-- **EventResponsibilities**: Many-to-many relationship linking persons to events with responsibility types
-- **Tasks**: Action items with status tracking, due dates, and assigned persons
-- **CateringServices**: Food service items with per-person pricing
-- **BeverageServices**: Beverage offerings with per-person pricing
-
-### Calculated Fields
-
-- `totalCateringCost`: Sum of all catering prices × expected guests
-- `totalBeverageCost`: Sum of all beverage prices × expected guests
-- `totalEventCost`: Total of catering and beverage costs
-- `taskProgress`: Percentage of completed tasks
+- **Events**: Central entity containing event details with the following fields:
+  - `eventName`: String (200) - mandatory
+  - `eventDate`: Date - mandatory  
+  - `location`: String (200) - optional
+  - `status`: String enum (Planning, Confirmed, Completed, Cancelled) - default 'Planning'
+  - `expectedGuests`: Integer - default 0
+  - `description`: String (5000) - large text for detailed descriptions
+  - Managed fields: `createdAt`, `createdBy`, `modifiedAt`, `modifiedBy` (automatic)
 
 ## Prerequisites
 
@@ -115,9 +108,9 @@ cf services
 ## Important Files
 
 - **[mta.yaml](mta.yaml)** - Cloud Foundry deployment configuration
-- **[db/schema.cds](db/schema.cds)** - Database schema with Events, Persons, Tasks, and Services
-- **[srv/app-service.cds](srv/app-service.cds)** - OData service definitions (EventService)
-- **[app/services.cds](app/services.cds)** - UI service annotations
+- **[db/schema.cds](db/schema.cds)** - Database schema with Events entity
+- **[srv/app-service.cds](srv/app-service.cds)** - OData service definition (EventsService) with UI annotations
+- **[srv/app-service.js](srv/app-service.js)** - Service implementation with validation logic and value help
 - **[xs-security.json](xs-security.json)** - XSUAA security configuration
 
 ## Useful Commands
